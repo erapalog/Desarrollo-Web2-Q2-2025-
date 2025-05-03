@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useEffect, useState } from 'react'
 import './App.css'
+import ContadorPalabras from './Components/ContadorPalabras';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+  //get, set
+  const [contador, setContador]= useState<number>(0);
+
+
+  //incrementa el valor del estado contador
+  function sumaContador(){
+    setContador(contador+1)
+  }
+
+
+/** 
+ * adkjsalkdjaskld
+ * daskdjsaldjklsa
+ * ajsdhsajkhskjfd
+*/
+  function restaContador(numeroRestar: number){
+
+    setContador(contador-numeroRestar)
+
+  }
+
+
+  //Lo puedo utilizar, para determinar cuando el componente ha sido cargado
+  useEffect(()=>{
+      console.log('componente cargado')
+      setContador(10)
+  }, []);
+
+
+  return (  
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+     Valor del contador : {contador} <br></br>
+
+     <button onClick={sumaContador}>Suma 1 unidad</button> <br />
+
+     <button onClick={()=>restaContador(2)}>Restar Contador</button>
+
+
+     <h1>Contador de letras</h1>
+
+     <ContadorPalabras></ContadorPalabras>
     </>
   )
 }
+
 
 export default App
