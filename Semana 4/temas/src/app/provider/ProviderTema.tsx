@@ -21,8 +21,21 @@ export default function ProviderTema({children}:PlantillaReact) {
 
   const [temasInteresantes, setTemasInteresantes]=useState<Temas[]>([])
 
-  function marcarTema(tema:Temas){
-    setTemasInteresantes([...temasInteresantes,tema])
+  function marcarTema(tema:Temas,opcion:number){
+
+    //1 para agregar
+    //0 para eliminar
+
+    if(opcion==1){
+      setTemasInteresantes([...temasInteresantes,tema]);
+      alert('Agregado exitosamente')
+    }
+    else{
+      const nuevosTemas = temasInteresantes.filter(t => t.id !== tema.id);
+        setTemasInteresantes(nuevosTemas);
+
+    }
+         
 
   }
   return (
