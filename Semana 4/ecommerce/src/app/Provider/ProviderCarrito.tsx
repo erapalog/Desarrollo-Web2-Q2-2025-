@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+'use client'
+import React, { useContext, useEffect, useState } from 'react'
 import { PlantillaReact } from '../Modelos/PlantillaReact'
 import { contextCarrito } from '../Contexto/ContextCarrito'
 import { Producto } from '../Modelos/Producto'
@@ -42,11 +43,16 @@ export default function ProviderCarrito({children}:PlantillaReact) {
  const [productoCarrito, setProductoCarrito]= useState<Producto[]>([]);
  
  function agregarCarrito(producto:Producto){
+        alert('prodcuto agregado al carrito')
         setProductoCarrito([...productoCarrito,producto])
  }
 
+ useEffect(()=>{
+        console.log(productoCarrito)
+ },[productoCarrito])
+
   return (
-    <contextCarrito.Provider value={{producto,setProductoCarrito,agregarCarrito}}>
+    <contextCarrito.Provider value={{producto,productoCarrito,setProductoCarrito,agregarCarrito}}>
         {children}
     </contextCarrito.Provider>
    

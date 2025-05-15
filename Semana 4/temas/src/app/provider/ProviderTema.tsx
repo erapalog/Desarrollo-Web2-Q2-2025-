@@ -27,10 +27,12 @@ export default function ProviderTema({children}:PlantillaReact) {
     //0 para eliminar
 
     if(opcion==1){
+      tema.interesante=true;
       setTemasInteresantes([...temasInteresantes,tema]);
       alert('Agregado exitosamente')
     }
     else{
+       tema.interesante=false;
       const nuevosTemas = temasInteresantes.filter(t => t.id !== tema.id);
         setTemasInteresantes(nuevosTemas);
 

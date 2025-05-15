@@ -23,8 +23,6 @@ export default function page() {
             </tr>
           </thead>
           <tbody>
-
-
             {
 
               temas.map((item) => (
