@@ -12,3 +12,4 @@ export const contextCarrito = createContext({
     setProductoCarrito: (productos: Producto[])=>{},
     agregarCarrito: (producto:Producto) =>{}
 })
+

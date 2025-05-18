@@ -1,6 +1,7 @@
 'use client'
 import BotonEliminar from '@/app/Componentes/BotonEliminar';
 import Card from '@/app/Componentes/Card';
+import Carrusel from '@/app/Componentes/Carrusel';
 import { useContextCarrito } from '@/app/Provider/ProviderCarrito'
 import React from 'react'
 
@@ -11,6 +12,8 @@ export default function page() {
    return (
     <>
       <div className='container'>
+
+        <Carrusel></Carrusel>
 
 
         <div className='row'>
@@ -40,6 +43,8 @@ export default function page() {
           ))
         }
         </div>
+
+
      
 
       </div>

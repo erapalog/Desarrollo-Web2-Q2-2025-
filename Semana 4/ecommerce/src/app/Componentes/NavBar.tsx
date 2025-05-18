@@ -2,10 +2,12 @@
 import Link from 'next/link'
 import React, { useContext } from 'react'
 import { useContextCarrito } from '../Provider/ProviderCarrito'
+import { useContextUsuario } from '../Provider/ProviderUsuario'
 
 export default function NavBar() {
 
   const {productoCarrito} =useContextCarrito()
+  const {nombreUsuario} = useContextUsuario()
 
   return (
     <>
@@ -17,6 +19,10 @@ export default function NavBar() {
     <div className="" id="navbarSupportedContent">
       <ul className="navbar-nav ">
      
+      <li className="nav-item">
+          Usuario conectado {nombreUsuario}
+        </li>
+
         <li className="nav-item">
           <Link className="nav-link" href="listaproductos">Lista Producto</Link>
         </li>
