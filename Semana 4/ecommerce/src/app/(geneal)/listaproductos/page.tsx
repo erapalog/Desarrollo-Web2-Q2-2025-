@@ -1,18 +1,41 @@
 'use client'
 import BotonAgregar from '@/app/Componentes/BotonAgregar';
 import Card from '@/app/Componentes/Card';
+import { Producto } from '@/app/Modelos/Producto';
 import { useContextCarrito } from '@/app/Provider/ProviderCarrito'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function page() {
 
-  const { producto, agregarCarrito } = useContextCarrito();
+  const { producto,cargarProducto, guardarProducto } = useContextCarrito();
 
+
+  useEffect(()=>{
+      cargarProducto();
+      
+  },[]);
+
+
+  function guardarProductoDetalle(){
+    let producto: Producto={
+       // "idProducto":0,
+        "nombreProducto":"Sal",
+        "precioProducto":10,
+        "isvProducto":5,
+        "imgProducto":""
+    }
+
+    guardarProducto(producto);
+
+    cargarProducto();
+  }
 
   return (
     <>
       <div className='container'>
 
+
+      <button className='btn btn-warning' onClick={guardarProductoDetalle}> Agregar Producto</button>
 
         <div className='row'>
    {/*{

@@ -10,36 +10,44 @@ import { Producto } from '../Modelos/Producto'
 
 export default function ProviderCarrito({children}:PlantillaReact) {
 
- const [producto, setProducto]= useState<Producto[]>([
-    {
-        idProducto:1,
-        nombreProducto:'Arroz',
-        precioProducto:10,
-        isvProducto:10.5,
-        imgProducto:''
-    },
-    {
-        idProducto:2,
-        nombreProducto:'papas',
-        precioProducto:10,
-        isvProducto:10.5,
-        imgProducto:''
-    },
-    {
-        idProducto:3,
-        nombreProducto:'zanahorias',
-        precioProducto:10,
-        isvProducto:10.5,
-        imgProducto:''
-    },
-    {
-        idProducto:4,
-        nombreProducto:'pescado',
-        precioProducto:10,
-        isvProducto:10.5,
-        imgProducto:''
+ const [producto, setProducto]= useState<Producto[]>([]);
+
+ let urlApi="http://localhost:5000/producto"
+
+
+ async function cargarProducto(){
+    try{
+
+        const respuesrta= await fetch(urlApi)
+        const data= await respuesrta.json();
+        setProducto(data);
     }
- ]);
+    catch(err){
+        alert('Ocurrio un Error al cargar los productos')
+    }
+ }
+
+ async function  guardarProducto(prodcuto:Producto) {
+    
+    try {
+        
+        const respuesta= await fetch(urlApi,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(prodcuto)
+        })
+
+        const data= await respuesta.json();
+
+        alert("Agregado Correctamente")
+
+    } catch (error) {
+        alert("Ocurrio un error al guardar Producto")
+    }
+ }
+
  const [productoCarrito, setProductoCarrito]= useState<Producto[]>([]);
  
  function agregarCarrito(producto:Producto){
@@ -52,7 +60,7 @@ export default function ProviderCarrito({children}:PlantillaReact) {
  },[productoCarrito])
 
   return (
-    <contextCarrito.Provider value={{producto,productoCarrito,setProductoCarrito,agregarCarrito}}>
+    <contextCarrito.Provider value={{producto,productoCarrito,setProductoCarrito,agregarCarrito,cargarProducto,guardarProducto}}>
         {children}
     </contextCarrito.Provider>
    
